@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:graphqlandroidclient/screens/users_page.dart';
+
+import 'add_user_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,23 +13,31 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    Widget content = UsersPage();
     return Scaffold(
       appBar: AppBar(
-        title: Text(""),
+        title: Text(
+          "Users & Hobbies",
+          style: TextStyle(
+              color: Colors.grey, fontSize: 19, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: Center(
-        child: Column(
-          children: <Widget>[],
-          mainAxisAlignment: MainAxisAlignment.center,
-        ),
+        child: content
       ),
-        floatingActionButton:  FloatingActionButton(
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+            final route = MaterialPageRoute(
+            builder: (context) => AddUserPage(),
+          );
+          await Navigator.push(context, route);
+        },
         backgroundColor: Colors.lightGreen,
-        onPressed: () { 
-          
-         },
         child: Icon(Icons.group_add),
-      ), 
+      ),
     );
   }
 }
